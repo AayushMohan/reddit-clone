@@ -55,6 +55,21 @@ const Header = () => {
       <div className="ml-5 flex items-center lg:hidden">
         <MenuIcon className="icon" />
       </div>
+
+      {/* SignIn and SignOut Button */}
+      <div className="hidden cursor-pointer items-center space-x-2 border border-gray-100 p-2 lg:flex">
+        <div className="relative h-5 w-5 flex-shrink-0">
+          <Image
+            src="https://links.papareact.com/23l"
+            height={5}
+            width={5}
+            layout="fill"
+            objectFit="contain"
+            alt=""
+          />
+        </div>
+        <p className="text-gray-400">Sign In</p>
+      </div>
     </div>
   )
 }
