@@ -1,5 +1,4 @@
 import Image from 'next/image'
-import React from 'react'
 import { ChevronDownIcon, HomeIcon, SearchIcon } from '@heroicons/react/solid'
 import {
   BellIcon,
@@ -11,8 +10,10 @@ import {
   VideoCameraIcon,
   MenuIcon,
 } from '@heroicons/react/outline'
+import { signIn, signOut, useSession } from 'next-auth/react'
 
 const Header = () => {
+  const { data: session } = useSession()
   return (
     <div className="sticky top-0 z-50 flex bg-white px-4 py-2 shadow-sm">
       {/* Reddit Icon */}
@@ -57,19 +58,44 @@ const Header = () => {
       </div>
 
       {/* SignIn and SignOut Button */}
-      <div className="hidden cursor-pointer items-center space-x-2 border border-gray-100 p-2 lg:flex">
-        <div className="relative h-5 w-5 flex-shrink-0">
-          <Image
-            src="https://links.papareact.com/23l"
-            height={5}
-            width={5}
-            layout="fill"
-            objectFit="contain"
-            alt=""
-          />
+      {session ? (
+        <div
+          onClick={() => signOut()}
+          className="hidden cursor-pointer items-center space-x-2 border border-gray-100 p-2 lg:flex"
+        >
+          <div className="relative h-5 w-5 flex-shrink-0">
+            <Image
+              src="https://links.papareact.com/23l"
+              height={5}
+              width={5}
+              layout="fill"
+              objectFit="contain"
+              alt=""
+            />
+          </div>
+          <div className="flex-1 text-xs">
+            <p className="truncate">{session?.user?.name}</p>
+            <p className="text-gray-400">1 Karma</p>
+          </div>
         </div>
-        <p className="text-gray-400">Sign In</p>
-      </div>
+      ) : (
+        <div
+          onClick={() => signIn()}
+          className="hidden cursor-pointer items-center space-x-2 border border-gray-100 p-2 lg:flex"
+        >
+          <div className="relative h-5 w-5 flex-shrink-0">
+            <Image
+              src="https://links.papareact.com/23l"
+              height={5}
+              width={5}
+              layout="fill"
+              objectFit="contain"
+              alt=""
+            />
+          </div>
+          <p className="text-gray-400">Sign In</p>
+        </div>
+      )}
     </div>
   )
 }
