@@ -20,8 +20,8 @@ const PostBox = () => {
               : 'Sign in to create a post!'
           }
         />
-        <PhotographIcon />
-        <LinkIcon />
+        <PhotographIcon className={`h-6 cursor-pointer text-gray-300`} />
+        <LinkIcon className="h-6 text-gray-300 " />
       </div>
     </form>
   )
