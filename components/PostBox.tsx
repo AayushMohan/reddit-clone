@@ -41,6 +41,22 @@ const PostBox = () => {
         <PhotographIcon className={`h-6 cursor-pointer text-gray-300`} />
         <LinkIcon className="h-6 text-gray-300 " />
       </div>
+
+      {!!watch('postTitle') && (
+        <div>
+          {/* Body */}
+          <div>
+            <p>Body</p>
+
+            <input
+              className="m-2 flex-1 bg-blue-50 p-2 outline-none"
+              {...register('postBody')}
+              type="text"
+              placeholder="Text (optional)"
+            />
+          </div>
+        </div>
+      )}
     </form>
   )
 }
