@@ -1,8 +1,16 @@
 import { LinkIcon, PhotographIcon } from '@heroicons/react/outline'
 import { useSession } from 'next-auth/react'
+import { type } from 'os'
 import React from 'react'
 import { useForm } from 'react-hook-form'
 import Avatar from './Avatar'
+
+type formData = {
+  postTitle: string
+  postBody: string
+  postImage: string
+  subreddit: string
+}
 
 const PostBox = () => {
   const { data: session } = useSession()
@@ -20,6 +28,7 @@ const PostBox = () => {
         {/* Avatar */}
         <Avatar />
         <input
+          {...register('postTitle', { required: true })}
           disabled={!session}
           className="flex-1 rounded-md bg-gray-50 p-2 pl-5 outline-none"
           type="text"
