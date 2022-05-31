@@ -1,8 +1,10 @@
+import { useMutation } from '@apollo/client'
 import { LinkIcon, PhotographIcon } from '@heroicons/react/outline'
 import { useSession } from 'next-auth/react'
 import { type } from 'os'
 import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
+import { ADD_POST } from '../graphql/queries'
 import Avatar from './Avatar'
 
 type formData = {
@@ -14,6 +16,8 @@ type formData = {
 
 const PostBox = () => {
   const { data: session } = useSession()
+  const [addPost] = useMutation(ADD_POST)
+
   const [imageBoxOpen, setImageBoxOpen] = useState(false)
   const {
     register,
@@ -25,6 +29,9 @@ const PostBox = () => {
 
   const onSubmit = handleSubmit(async (formData) => {
     console.log(formData)
+
+    try {
+    } catch (error) {}
   })
 
   return (
