@@ -1,7 +1,7 @@
 import { LinkIcon, PhotographIcon } from '@heroicons/react/outline'
 import { useSession } from 'next-auth/react'
 import { type } from 'os'
-import React from 'react'
+import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import Avatar from './Avatar'
 
@@ -14,6 +14,7 @@ type formData = {
 
 const PostBox = () => {
   const { data: session } = useSession()
+  const [imageBoxOpen, setImageBoxOpen] = useState(false)
   const {
     register,
     setValue,
@@ -38,7 +39,12 @@ const PostBox = () => {
               : 'Sign in to create a post!'
           }
         />
-        <PhotographIcon className={`h-6 cursor-pointer text-gray-300`} />
+        <PhotographIcon
+          onClick={() => setImageBoxOpen(!imageBoxOpen)}
+          className={`h-6 cursor-pointer text-gray-300 ${
+            imageBoxOpen && 'text-blue-300'
+          }`}
+        />
         <LinkIcon className="h-6 text-gray-300 " />
       </div>
 
