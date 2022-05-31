@@ -95,7 +95,14 @@ const PostBox = () => {
               )}
             </div>
           )}
-          {!!watch('postTitle') && <button>Create Post</button>}
+          {!!watch('postTitle') && (
+            <button
+              className="w-full rounded-full bg-blue-400 p-2 text-white"
+              type="submit"
+            >
+              Create Post
+            </button>
+          )}
         </div>
       )}
     </form>
