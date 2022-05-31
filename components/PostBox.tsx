@@ -82,6 +82,15 @@ const PostBox = () => {
               />
             </div>
           )}
+
+          {/* Errors */}
+          {Object.keys(errors).length > 0 && (
+            <div>
+              {errors.postTitle?.type === 'required' && (
+                <p>A Post Title is required</p>
+              )}
+            </div>
+          )}
         </div>
       )}
     </form>
