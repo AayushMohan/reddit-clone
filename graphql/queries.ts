@@ -14,6 +14,14 @@ export const ADD_POST = gql`
       subreddit: $subreddit
       title: $title
       username: $username 
-    )
+    ){
+      body
+      created_at
+      id
+      image
+      subreddit_id
+      title
+      username
+    }
   }
 `
