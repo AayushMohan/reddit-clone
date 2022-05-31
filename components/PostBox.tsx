@@ -95,6 +95,7 @@ const PostBox = () => {
               )}
             </div>
           )}
+          {!!watch('postTitle') && <button>Create Post</button>}
         </div>
       )}
     </form>
