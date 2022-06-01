@@ -4,7 +4,8 @@ import { useSession } from 'next-auth/react'
 import { type } from 'os'
 import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
-import { ADD_POST } from '../graphql/queries'
+import client from '../apollo-client'
+import { ADD_POST, GET_SUBREDDIT_BY_TOPIC } from '../graphql/queries'
 import Avatar from './Avatar'
 
 type formData = {
@@ -31,6 +32,10 @@ const PostBox = () => {
     console.log(formData)
 
     try {
+      // Query the subreddit topic...
+      await client.query({
+        query: GET_SUBREDDIT_BY_TOPIC,
+      })
     } catch (error) {}
   })
 
