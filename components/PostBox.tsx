@@ -33,9 +33,22 @@ const PostBox = () => {
 
     try {
       // Query the subreddit topic...
-      await client.query({
+      const {
+        data: { getSubredditListByTopic },
+      } = await client.query({
         query: GET_SUBREDDIT_BY_TOPIC,
+        variables: {
+          topic: formData.subreddit,
+        },
       })
+
+      const subredditExists = getSubredditListByTopic.length > 0
+
+      if (!subredditExists) {
+        // Create Subreddit...
+      } else {
+        // Use Existing Subreddit...
+      }
     } catch (error) {}
   })
 
