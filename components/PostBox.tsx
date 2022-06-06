@@ -55,6 +55,10 @@ const PostBox = () => {
             topic: formData.subreddit,
           },
         })
+
+        console.log('Creating post...', formData)
+
+        const image = formData.postImage || ''
       } else {
         // Use Existing Subreddit...
       }
