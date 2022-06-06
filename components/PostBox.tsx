@@ -50,7 +50,9 @@ const PostBox = () => {
         // Create Subreddit...
         console.log('Subreddit is new! -> creating a NEW subreddit!')
 
-        await addSubreddit({
+        const {
+          data: { newSubreddit },
+        } = await addSubreddit({
           variables: {
             topic: formData.subreddit,
           },
@@ -59,6 +61,19 @@ const PostBox = () => {
         console.log('Creating post...', formData)
 
         const image = formData.postImage || ''
+
+        const {
+          data: { insertPost: newPost },
+        } = await addPost({
+          variables: {
+            body: formData.postBody,
+            image: image,
+            subreddit_id: newSubreddit.id,
+            title: formData.postTitle,
+            username: session?.user?.name,
+          },
+        })
+        console.log('New Post Added', newPost)
       } else {
         // Use Existing Subreddit...
       }
