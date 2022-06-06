@@ -48,6 +48,13 @@ const PostBox = () => {
 
       if (!subredditExists) {
         // Create Subreddit...
+        console.log('Subreddit is new! -> creating a NEW subreddit!')
+
+        await addSubreddit({
+          variables: {
+            topic: formData.subreddit,
+          },
+        })
       } else {
         // Use Existing Subreddit...
       }
