@@ -5,6 +5,7 @@ export const GET_ALL_POSTS = gql`
   query MyQuery {
     getPostList{ 
       body
+      post
       created_at
       id
       image
