@@ -94,6 +94,12 @@ const PostBox = () => {
           },
         })
       }
+
+      // After the post has been added!
+      setValue('postBody', '')
+      setValue('postImage', '')
+      setValue('postTitle', '')
+      setValue('subreddit', '')
     } catch (error) {}
   })
 
