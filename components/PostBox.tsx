@@ -4,6 +4,7 @@ import { useSession } from 'next-auth/react'
 import { type } from 'os'
 import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
+import toast from 'react-hot-toast'
 import client from '../apollo-client'
 import { ADD_POST, ADD_SUBREDDIT } from '../graphql/mutation'
 import { GET_SUBREDDIT_BY_TOPIC } from '../graphql/queries'
@@ -32,6 +33,7 @@ const PostBox = () => {
 
   const onSubmit = handleSubmit(async (formData) => {
     console.log(formData)
+    const notification = toast.loading('Creating new post...')
 
     try {
       // Query for the subreddit topic...
@@ -51,7 +53,7 @@ const PostBox = () => {
         console.log('Subreddit is new! -> creating a NEW subreddit!')
 
         const {
-          data: { newSubreddit },
+          data: { insertSubreddit: newSubreddit },
         } = await addSubreddit({
           variables: {
             topic: formData.subreddit,
@@ -93,6 +95,7 @@ const PostBox = () => {
             username: session?.user?.name,
           },
         })
+        console.log('New Post Added', newPost)
       }
 
       // After the post has been added!
@@ -100,7 +103,15 @@ const PostBox = () => {
       setValue('postImage', '')
       setValue('postTitle', '')
       setValue('subreddit', '')
-    } catch (error) {}
+
+      toast.success('New Post Created!', {
+        id: notification,
+      })
+    } catch (error) {
+      toast.error('Whoops something went wrong!', {
+        id: notification,
+      })
+    }
   })
 
   return (
