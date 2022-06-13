@@ -28,7 +28,7 @@ export const ADD_POST = gql`
 
 export const GET_SUBREDDIT_BY_TOPIC = gql`
   query MyQuery($topic: String!) {
-    getSubredditByTopic(topic: $topic) {
+    getSubredditListByTopic(topic: $topic) {
       id
       topic
       created_at

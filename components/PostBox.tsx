@@ -34,7 +34,7 @@ const PostBox = () => {
     console.log(formData)
 
     try {
-      // Query the subreddit topic...
+      // Query for the subreddit topic...
       const {
         data: { getSubredditListByTopic },
       } = await client.query({
