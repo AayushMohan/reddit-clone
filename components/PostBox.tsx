@@ -5,8 +5,8 @@ import { type } from 'os'
 import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import client from '../apollo-client'
-import { ADD_SUBREDDIT } from '../graphql/mutation'
-import { ADD_POST, GET_SUBREDDIT_BY_TOPIC } from '../graphql/queries'
+import { ADD_POST, ADD_SUBREDDIT } from '../graphql/mutation'
+import { GET_SUBREDDIT_BY_TOPIC } from '../graphql/queries'
 import Avatar from './Avatar'
 
 type formData = {
